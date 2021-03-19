@@ -1,5 +1,6 @@
 <?php
 
+use App\Dimension;
 use Illuminate\Database\Seeder;
 
 class DimensionSeeder extends Seeder
@@ -11,6 +12,19 @@ class DimensionSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Dimension::insert([
+            [
+                'title' => 'Cultura'
+            ],
+            [
+                'title' => 'Estrutura'
+            ],
+            [
+                'title' => 'Conceito'
+            ],
+            [
+                'title' => 'Engajamento'
+            ]
+        ]);
     }
 }
