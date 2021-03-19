@@ -12,10 +12,17 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $questions = Question::with('dimension')->get();
-        return response()->json($questions);
+        $dimensions = $request->get('dimensions', "");
+        $dimensions = explode(',', $dimensions);
+        $dimensions = array_filter($dimensions);
+
+        $questions = Question::with('dimension')
+            ->when($dimensions, function ($query) use ($dimensions) {
+                $query->whereIn('dimension_id', $dimensions);
+            });
+        return response()->json($questions->get());
     }
 
 
