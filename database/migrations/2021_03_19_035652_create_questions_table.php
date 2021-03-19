@@ -15,7 +15,9 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->unsignedBigInteger('dimension_id')->nullable(false);
+            $table->text("content")->nullable(false);
+            $table->foreign('dimension_id')->references('id')->on('dimensions');
         });
     }
 
