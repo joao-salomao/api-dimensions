@@ -16,6 +16,7 @@ class CreateDimensionsTable extends Migration
         Schema::create('dimensions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->timestamps();
         });
     }
 

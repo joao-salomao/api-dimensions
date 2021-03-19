@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->unsignedBigInteger('dimension_id')->nullable(false);
             $table->text("content")->nullable(false);
             $table->boolean('active')->default(false);
+            $table->timestamps();
             $table->foreign('dimension_id')->references('id')->on('dimensions');
         });
     }
