@@ -14,7 +14,7 @@ class DimensionController extends Controller
      */
     public function index()
     {
-        $dimensions = Dimension::get();
+        $dimensions = Dimension::with('questions')->orderBy('title')->get();
         return response()->json($dimensions);
     }
 
