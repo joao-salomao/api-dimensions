@@ -13,7 +13,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/question', 'QuestionController@index');
-Route::get('/question/{question}', 'QuestionController@show');
 Route::post('/question', 'QuestionController@store');
+Route::get('/question/{question}', 'QuestionController@show');
 Route::put('/question/{question}', 'QuestionController@update');
 Route::delete('/question/{question}', 'QuestionController@destroy');
+
+Route::get('/dimension', 'DimensionController@index');
+Route::post('/dimension', 'DimensionController@store');
+Route::get('/dimension/{dimension}', 'DimensionController@show');
+Route::put('/dimension/{dimension}', 'DimensionController@update');
+Route::delete('/dimension/{dimension}', 'DimensionController@destroy');

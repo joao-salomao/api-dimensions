@@ -14,18 +14,10 @@ class DimensionController extends Controller
      */
     public function index()
     {
-        //
+        $dimensions = Dimension::get();
+        return response()->json($dimensions);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +27,9 @@ class DimensionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $dimension = Dimension::create($data);
+        return response()->json($dimension);
     }
 
     /**
@@ -46,19 +40,9 @@ class DimensionController extends Controller
      */
     public function show(Dimension $dimension)
     {
-        //
+        return response()->json($dimension);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Dimension  $dimension
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Dimension $dimension)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +53,9 @@ class DimensionController extends Controller
      */
     public function update(Request $request, Dimension $dimension)
     {
-        //
+        $data = $request->all();
+        $dimension->fill($data)->save();
+        return response()->json($dimension);
     }
 
     /**
@@ -80,6 +66,6 @@ class DimensionController extends Controller
      */
     public function destroy(Dimension $dimension)
     {
-        //
+        return response()->json(['deleted' => $dimension->delete()]);
     }
 }
