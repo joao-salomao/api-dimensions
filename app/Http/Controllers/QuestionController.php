@@ -14,18 +14,10 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $questions = Question::with('dimension')->get();
+        return response()->json($questions);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +27,9 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $question = Question::create($data);
+        return response()->json($question);
     }
 
     /**
@@ -46,19 +40,10 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        $question->load('dimension');
+        return response()->json($question);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Question $question)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +54,9 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $data = $request->all();
+        $question->fill($data)->save();
+        return response()->json($question);
     }
 
     /**
@@ -80,6 +67,6 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        return response()->json(['deleted' => $question->delete()]);
     }
 }

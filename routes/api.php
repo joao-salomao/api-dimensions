@@ -1,7 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +12,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/question', 'QuestionController@index');
+Route::get('/question/{question}', 'QuestionController@show');
+Route::post('/question', 'QuestionController@store');
+Route::put('/question/{question}', 'QuestionController@update');
+Route::delete('/question/{question}', 'QuestionController@destroy');
