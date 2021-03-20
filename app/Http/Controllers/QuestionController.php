@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Question;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateQuestionRequest;
+use App\Http\Requests\UpdateQuestionRequest;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         $dimensions = $request->get('dimensions', "");
@@ -26,25 +24,14 @@ class QuestionController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(CreateQuestionRequest $request)
     {
         $data = $request->all();
         $question = Question::create($data);
         return response()->json($question);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Question $question)
     {
         $question->load('dimension');
@@ -52,26 +39,14 @@ class QuestionController extends Controller
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Question $question)
+    public function update(UpdateQuestionRequest $request, Question $question)
     {
         $data = $request->all();
         $question->fill($data)->save();
         return response()->json($question);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Question $question)
     {
         return response()->json(['deleted' => $question->delete()]);
