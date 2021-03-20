@@ -8,20 +8,28 @@
 
 ### Configuração
 
- Instalar as dependências do projeto executando o seguinte comando na raiz do projeto: 
+Instalar as dependências do projeto executando o seguinte comando na raiz do projeto:
+
 ```bash
 composer install
 ```
 
 Configurar a conexão com o banco de dados no arquivo .env definindo o valor das seguintes variáveis:
-- DB_HOST
-- DB_PORT
-- DB_DATABASE
-- DB_USERNAME
-- DB_PASSWORD
 
+-   DB_HOST
+-   DB_PORT
+-   DB_DATABASE
+-   DB_USERNAME
+-   DB_PASSWORD
+
+Execute as migrações para criar as tabelas no banco de dados através do seguinte comando:
+
+```bash
+php artisan migrate
+```
 
 Executar o servidor de desenvolvimento usando o seguinte comando:
+
 ```bash
 php artisan serve
 ```
