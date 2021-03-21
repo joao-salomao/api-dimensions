@@ -33,3 +33,9 @@ Executar o servidor de desenvolvimento usando o seguinte comando:
 ```bash
 php artisan serve
 ```
+
+## Testes
+Execute os testes de integração usando o seguinte comando:
+```bash
+./vendor/bin/phpunit tests/Integration  --testdox
+```
